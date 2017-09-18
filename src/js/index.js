@@ -1,4 +1,4 @@
 const hello = () => {
-    alert("Hola")
+    alert("Hola ES6")
 };
 hello();
