@@ -1,14 +1,25 @@
-module.export = {
-  entry: __dirname + '/src/js',
-  module:{
-    loader:[{
-        test: /\.js$/,
-        include: __dirname + '/src/js',
-        loader: 'babel'
-    }]
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const PATHS = {
+  app: path.join(__dirname, 'src/js'),
+  build: path.join(__dirname, 'dist/js'),
+};
+
+module.exports = {
+  // Entries have to resolve to files! They rely on Node
+  // convention by default so if a directory contains *index.js*,
+  // it resolves to that.
+  entry: {
+    app: PATHS.app,
   },
-  output :{
-    path:'./dist',
-    filename: 'bundle.js'
-  }
+  output: {
+    path: PATHS.build,
+    filename: '[name].js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Webpack demo',
+    }),
+  ],
 };
